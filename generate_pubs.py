@@ -29,7 +29,7 @@ def first_entry(x):
         return x
 
 def format_bibcode(bibcode, entry_n):
-    fields = ['title', 'author', 'year', 'issue', 'page']
+    fields = ['title', 'author', 'year', 'volume', 'page']
     search_results = ads.SearchQuery(bibcode=bibcode, fl=fields)
     search_results.execute()
 
@@ -45,7 +45,7 @@ def format_bibcode(bibcode, entry_n):
                                   authors=", ".join(paper.author),
                                   year=paper.year,
                                   journal=parse_journal_abbrev(bibcode),
-                                  volume=paper.issue or "",
+                                  volume=paper.volume or "",
                                   page=first_entry(paper.page))
     return entry
 
